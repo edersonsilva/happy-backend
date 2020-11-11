@@ -24,7 +24,7 @@ export default class Product {
 
   @OneToMany(() => ImageProducts, image => image.product, {cascade: ['insert', 'update']})
   @JoinColumn({ name: 'product_id'})
-  images_product: ImageProducts[];
+  images_products: ImageProducts[];
 
   @CreateDateColumn()
   created_at: Date;

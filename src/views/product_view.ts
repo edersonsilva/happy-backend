@@ -9,7 +9,7 @@ export default {
       description: product.description,
       price: product.price,
       quantity: product.quantity,
-      images: ImagesProductstView.renderMany(product.images_product),
+      images: ImagesProductstView.renderMany(product.images_products),
       created_at: product.created_at,
       updated_at: product.updated_at,
     }

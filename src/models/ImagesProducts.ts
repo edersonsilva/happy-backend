@@ -9,13 +9,7 @@ export default class ImageProducts {
   @Column()
   path: string;
 
-  @ManyToOne(() => Product, product => product.images_product)
+  @ManyToOne(() => Product, product => product.images_products)
   @JoinColumn({ name: 'product_id'})
   product: Product;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
 }
