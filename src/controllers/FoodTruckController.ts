@@ -1,35 +1,34 @@
 
 import { Request, Response} from 'express';
 import { getRepository } from 'typeorm';
-import orphanagesView from '../views/orphanages_view';
+import foodtruckView from '../views/foodtruck_view';
 import * as Yup from 'yup';
 
-import Orphanage from '../models/Orphanage';
-import orphanages_view from '../views/orphanages_view';
+import FoodTruck from '../models/FoodTruck';
 import multer from 'multer';
 
 export default {
   async index(request: Request, response: Response) {
 
-    const orphanagesRepository = getRepository(Orphanage);
+    const foodtrucksRepository = getRepository(FoodTruck);
 
-    const orphanages = await orphanagesRepository.find({
+    const foodtrucks = await foodtrucksRepository.find({
       relations: ['images']
     });
 
-    return response.json(orphanagesView.renderMany(orphanages));
+    return response.json(foodtruckView.renderMany(foodtrucks));
   },
 
   async show(request: Request, response: Response) {
     const { id } = request.params;
 
-    const orphanagesRepository = getRepository(Orphanage);
+    const foodtrucksRepository = getRepository(FoodTruck);
 
-    const orphanage = await orphanagesRepository.findOneOrFail(id, {
+    const foodtruck = await foodtrucksRepository.findOneOrFail(id, {
       relations: ['images']
     });
 
-    return response.json(orphanagesView.render(orphanage));
+    return response.json(foodtruckView.render(foodtruck));
   },
 
   async create(request: Request, response: Response) {
@@ -42,9 +41,11 @@ export default {
       instructions,
       opening_hours,
       open_on_weekends,
+      created_at,
+      updated_at,
     } = request.body;
   
-    const orphanagesRepository = getRepository(Orphanage);
+    const foodtrucksRepository = getRepository(FoodTruck);
 
     const requestImages = request.files as Express.Multer.File[];
 
@@ -60,7 +61,9 @@ export default {
       instructions,
       opening_hours,
       open_on_weekends: open_on_weekends === 'true',
-      images
+      images,
+      created_at,
+      updated_at,
     };
 
     const schema = Yup.object().shape({
@@ -82,10 +85,10 @@ export default {
       abortEarly: false,
     });
 
-    const orphanage = orphanagesRepository.create(data);
+    const foodtruck = foodtrucksRepository.create(data);
   
-    await orphanagesRepository.save(orphanage);
+    await foodtrucksRepository.save(foodtruck);
   
-    return response.status(201).json(orphanage)
+    return response.status(201).json(foodtruck)
   }
 }

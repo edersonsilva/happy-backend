@@ -1,11 +1,10 @@
-import { text } from "express";
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class createOrphanages1603315466582 implements MigrationInterface {
+export class createFoodtrucks1605011284559 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: "orphanages",
+            name: "foodtrucks",
             columns: [
                 {
                     name: 'id',
@@ -21,15 +20,15 @@ export class createOrphanages1603315466582 implements MigrationInterface {
                 },
                 {
                     name: 'latitude',
-                    type: 'decimal',
-                    scale: 10,
-                    precision: 2,
+                    type: 'numeric',
+                    precision: 10,
+                    scale: 2
                 },
                 {
                     name: 'longitude',
-                    type: 'decimal',
-                    scale: 10,
-                    precision: 2,
+                    type: 'numeric',
+                    precision: 10,
+                    scale: 2
                 },
                 {
                     name: 'about',
@@ -48,12 +47,22 @@ export class createOrphanages1603315466582 implements MigrationInterface {
                     type: 'boolean',
                     default: false,
                 },
+                {
+                    name: 'created_at',
+                    type: 'timestamp',
+                    default: 'now()',
+                },
+                {
+                    name: 'updated_at',
+                    type: 'timestamp',
+                    default: 'now()',
+                },
             ]
         }))
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('orphanages');
+        await queryRunner.dropTable('foodtrucks');
     }
 
 }

@@ -1,15 +1,19 @@
 import { Router } from 'express';
 import multer from 'multer';
-import nulter from 'multer';
 
 import uploadConfig from './config/upload';
-import OrphanageController from './controllers/OrphanagesController';
+import FoodTruckController from './controllers/FoodTruckController';
+import ProductController from './controllers/ProductController';
 
 const routes = Router();
 const upload = multer(uploadConfig);
 
-routes.get('/orphanages', OrphanageController.index);
-routes.get('/orphanages/:id', OrphanageController.show);
-routes.post('/orphanages', upload.array('images'), OrphanageController.create);
+routes.get('/foodtrucks', FoodTruckController.index);
+routes.get('/foodtrucks/:id', FoodTruckController.show);
+routes.post('/foodtrucks', upload.array('images'), FoodTruckController.create);
+
+routes.get('/products', ProductController.index);
+routes.get('/products/:id', ProductController.show);
+routes.post('/products', upload.array('images'), ProductController.create);
 
 export default routes;
