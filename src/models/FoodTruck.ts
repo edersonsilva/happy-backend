@@ -28,7 +28,7 @@ export default class FoodTruck {
   @Column()
   open_on_weekends: boolean;
 
-  @OneToMany(() => Product, product => product.foodtruck, {cascade: ['insert', 'update']})
+  @OneToMany(() => Product, product => product.foodtruck_id, {cascade: ['insert', 'update']})
   @JoinColumn({ name: 'product_id'})
   products: Product[];
 

@@ -1,6 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import Foodtruck from './FoodTruck';
-import Product from "./Product";
 
 @Entity('images')
 export default class Image {

@@ -1,14 +1,14 @@
 import ImageProducts from '../models/ImagesProducts';
 
 export default {
-  render (image: ImageProducts) {
+  render (imageProducts: ImageProducts) {
     return {
-      id: image.id,
-      url: `http://localhost:3333/uploads/${image.path}`,
+      id: imageProducts.id,
+      url: `http://localhost:3333/uploads/${imageProducts.path}`,
     }
   },
 
-  renderMany(images: ImageProducts[]) {
-    return images.map(image => this.render(image));
+  renderMany(imageProducts: ImageProducts[]) {
+    return imageProducts.map(imageProduct => this.render(imageProduct));
   }
 }

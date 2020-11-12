@@ -6,12 +6,12 @@ import * as Yup from 'yup';
 
 import FoodTruck from '../models/FoodTruck';
 import multer from 'multer';
+import Product from '../models/Product';
 
 export default {
   async index(request: Request, response: Response) {
 
     const foodtrucksRepository = getRepository(FoodTruck);
-
     const foodtrucks = await foodtrucksRepository.find({
       relations: ['images']
     });
@@ -50,6 +50,10 @@ export default {
     const requestImages = request.files as Express.Multer.File[];
 
     const images = requestImages.map(image => {
+      return { path: image.filename }
+    })
+
+    const products = requestImages.map(image => {
       return { path: image.filename }
     })
   

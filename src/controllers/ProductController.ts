@@ -12,7 +12,7 @@ export default {
     const productsRepository = getRepository(Product);
 
     const products = await productsRepository.find({
-      relations: ['images_products']
+      relations: ['images_products', 'foodtruck']
     });
 
     return response.json(productView.renderMany(products));
@@ -24,7 +24,7 @@ export default {
     const productsRepository = getRepository(Product);
 
     const product = await productsRepository.findOneOrFail(id, {
-      relations: ['images_products']
+      relations: ['images_products','foodtruck']
     });
 
     return response.json(productView.render(product));
@@ -37,6 +37,7 @@ export default {
       description,
       price,
       quantity,
+      foodtruck_id,
       created_at,
       updated_at,
     } = request.body;
@@ -45,8 +46,8 @@ export default {
 
     const requestImages = request.files as Express.Multer.File[];
 
-    const images = requestImages.map(image => {
-      return { path: image.filename }
+    const images_products = requestImages.map(imageProduct => {
+      return { path: imageProduct.filename }
     })
   
     const data = {
@@ -54,7 +55,8 @@ export default {
       description,
       price,
       quantity,
-      images,
+      foodtruck_id,
+      images_products,
       created_at,
       updated_at,
     };
@@ -64,7 +66,7 @@ export default {
       description: Yup.string().required(),
       price: Yup.number().required(),
       quantity: Yup.number().required(),
-      images: Yup.array(
+      imageProducts: Yup.array(
         Yup.object().shape({
           path: Yup.string().required()
         })

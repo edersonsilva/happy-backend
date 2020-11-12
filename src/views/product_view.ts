@@ -9,7 +9,8 @@ export default {
       description: product.description,
       price: product.price,
       quantity: product.quantity,
-      images: ImagesProductstView.renderMany(product.images_products),
+      images_products: ImagesProductstView.renderMany(product.images_products),
+      foodtruck_id: product.foodtruck_id,
       created_at: product.created_at,
       updated_at: product.updated_at,
     }

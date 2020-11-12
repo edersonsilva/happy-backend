@@ -1,5 +1,6 @@
 import FoodTruck from '../models/FoodTruck';
 import ImagesView from '../views/images_view';
+import ProductsView from '../views/product_view';
 
 export default {
   render(foodTruck: FoodTruck) {
@@ -13,6 +14,7 @@ export default {
       opening_hours: foodTruck.opening_hours,
       open_on_weekends: foodTruck.open_on_weekends,
       images: ImagesView.renderMany(foodTruck.images),
+      // products: ProductsView.renderMany(foodTruck.products),
       created_at: foodTruck.created_at,
       updated_at: foodTruck.updated_at,
     }
