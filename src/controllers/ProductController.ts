@@ -12,7 +12,7 @@ export default {
     const productsRepository = getRepository(Product);
 
     const products = await productsRepository.find({
-      relations: ['images_products', 'foodtruck']
+      relations: ['images_products', 'foodtruck_id','category_id']
     });
 
     return response.json(productView.renderMany(products));
@@ -24,7 +24,7 @@ export default {
     const productsRepository = getRepository(Product);
 
     const product = await productsRepository.findOneOrFail(id, {
-      relations: ['images_products','foodtruck']
+      relations: ['images_products', 'foodtruck_id', 'category_id']
     });
 
     return response.json(productView.render(product));
@@ -38,6 +38,7 @@ export default {
       price,
       quantity,
       foodtruck_id,
+      category_id,
       created_at,
       updated_at,
     } = request.body;
@@ -56,6 +57,7 @@ export default {
       price,
       quantity,
       foodtruck_id,
+      category_id,
       images_products,
       created_at,
       updated_at,

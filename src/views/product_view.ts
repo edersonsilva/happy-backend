@@ -1,5 +1,5 @@
 import Product from "../models/Product";
-import ImagesProductstView from '../views/images_products_view';
+import ImagesProductsView from '../views/images_products_view';
 
 export default {
   render(product: Product) {
@@ -9,10 +9,11 @@ export default {
       description: product.description,
       price: product.price,
       quantity: product.quantity,
-      images_products: ImagesProductstView.renderMany(product.images_products),
-      foodtruck_id: product.foodtruck_id,
       created_at: product.created_at,
       updated_at: product.updated_at,
+      images_products: ImagesProductsView.renderMany(product.images_products),
+      category_id: product.category_id,
+      foodtruck_id: product.foodtruck_id
     }
   },
 

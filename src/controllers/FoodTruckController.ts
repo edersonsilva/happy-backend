@@ -13,7 +13,7 @@ export default {
 
     const foodtrucksRepository = getRepository(FoodTruck);
     const foodtrucks = await foodtrucksRepository.find({
-      relations: ['images']
+      relations: ['images','products']
     });
 
     return response.json(foodtruckView.renderMany(foodtrucks));
@@ -25,7 +25,7 @@ export default {
     const foodtrucksRepository = getRepository(FoodTruck);
 
     const foodtruck = await foodtrucksRepository.findOneOrFail(id, {
-      relations: ['images']
+      relations: ['images','products']
     });
 
     return response.json(foodtruckView.render(foodtruck));
@@ -43,6 +43,7 @@ export default {
       open_on_weekends,
       created_at,
       updated_at,
+      products,
     } = request.body;
   
     const foodtrucksRepository = getRepository(FoodTruck);
@@ -53,10 +54,6 @@ export default {
       return { path: image.filename }
     })
 
-    const products = requestImages.map(image => {
-      return { path: image.filename }
-    })
-  
     const data = {
       name,
       latitude,
@@ -65,9 +62,10 @@ export default {
       instructions,
       opening_hours,
       open_on_weekends: open_on_weekends === 'true',
-      images,
       created_at,
       updated_at,
+      images, 
+      products     
     };
 
     const schema = Yup.object().shape({

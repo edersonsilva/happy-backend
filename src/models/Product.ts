@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
+import Category from './Category';
 import FoodTruck from './FoodTruck';
 import ImageProducts from './ImagesProducts';
 
@@ -26,6 +27,10 @@ export default class Product {
   @ManyToOne(() => FoodTruck, foodtruck => foodtruck.products)
   @JoinColumn({ name: 'foodtruck_id'})
   foodtruck_id: FoodTruck;
+
+  @ManyToOne(() => Category, category => category.products)
+  @JoinColumn({ name: 'category_id'})
+  category_id: Category;
 
   @CreateDateColumn()
   created_at: Date;

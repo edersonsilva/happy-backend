@@ -13,10 +13,10 @@ export default {
       instructions: foodTruck.instructions,
       opening_hours: foodTruck.opening_hours,
       open_on_weekends: foodTruck.open_on_weekends,
-      images: ImagesView.renderMany(foodTruck.images),
-      // products: ProductsView.renderMany(foodTruck.products),
       created_at: foodTruck.created_at,
       updated_at: foodTruck.updated_at,
+      images: ImagesView.renderMany(foodTruck.images),
+      products: foodTruck.products
     }
   },
 
