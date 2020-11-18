@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDa
 import Product from "./Product";
 
 @Entity('images_products')
-export default class ImageProducts {
+export default class ImageProduct {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -11,5 +11,5 @@ export default class ImageProducts {
 
   @ManyToOne(() => Product, product => product.images_products)
   @JoinColumn({ name: 'product_id'})
-  product: Product;
+  product_id: Product;
 }

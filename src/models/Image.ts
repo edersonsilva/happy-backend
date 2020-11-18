@@ -11,5 +11,5 @@ export default class Image {
 
   @ManyToOne(() => Foodtruck, foodtruck => foodtruck.images)
   @JoinColumn({ name: 'foodtruck_id'})
-  foodtruck: Foodtruck;
+  foodtruck_id: Foodtruck;
 }

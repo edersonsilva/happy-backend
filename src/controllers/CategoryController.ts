@@ -32,7 +32,7 @@ export default {
     const {
       name,
       created_at,
-      updated_at,
+      updated_at
     } = request.body;
   
     const categoriesRepository = getRepository(Category);

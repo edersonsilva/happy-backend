@@ -13,11 +13,12 @@ export default {
       updated_at: product.updated_at,
       images_products: ImagesProductsView.renderMany(product.images_products),
       category_id: product.category_id,
-      foodtruck_id: product.foodtruck_id
+      foodtruck_id: product.foodtruck_id,
     }
   },
 
   renderMany(products: Product[]) {
-    return products.map(product => this.render(product));
+    return (
+      products && products.map(product => this.render(product)));
   }
 }

@@ -5,8 +5,10 @@ import foodtruckView from '../views/foodtruck_view';
 import * as Yup from 'yup';
 
 import FoodTruck from '../models/FoodTruck';
-import multer from 'multer';
 import Product from '../models/Product';
+
+import multer from 'multer';
+import images_products_view from '../views/images_products_view';
 
 export default {
   async index(request: Request, response: Response) {

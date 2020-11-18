@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 
 import multer from 'multer';
 import Product from "../models/Product";
+import product_view from '../views/product_view';
 
 export default {
   async index(request: Request, response: Response) {
@@ -68,11 +69,6 @@ export default {
       description: Yup.string().required(),
       price: Yup.number().required(),
       quantity: Yup.number().required(),
-      imageProducts: Yup.array(
-        Yup.object().shape({
-          path: Yup.string().required()
-        })
-      )
     });
 
     await schema.validate(data, {

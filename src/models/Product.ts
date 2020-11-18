@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
 import Category from './Category';
 import FoodTruck from './FoodTruck';
-import ImageProducts from './ImagesProducts';
+import ImageProduct from './ImageProduct';
 
 @Entity('products')
 export default class Product {
@@ -20,9 +20,9 @@ export default class Product {
   @Column()
   quantity: number;
 
-  @OneToMany(() => ImageProducts, image_products => image_products.product, {cascade: ['insert', 'update']})
+  @OneToMany(() => ImageProduct, image_products => image_products.product_id, {cascade: ['insert', 'update']})
   @JoinColumn({ name: 'product_id'})
-  images_products: ImageProducts[];
+  images_products: ImageProduct[];
 
   @ManyToOne(() => FoodTruck, foodtruck => foodtruck.products)
   @JoinColumn({ name: 'foodtruck_id'})

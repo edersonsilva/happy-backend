@@ -1,13 +1,14 @@
 import Category from '../models/Category';
+import ProductsView from './product_view';
 
 export default {
   render(category: Category) {
     return {
       id: category.id,
       name: category.name,
-      products: category.products,
       created_at: category.created_at,
       updated_at: category.updated_at,
+      products: ProductsView.renderMany(category.products),
     }
   },
 

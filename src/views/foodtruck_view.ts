@@ -1,4 +1,5 @@
 import FoodTruck from '../models/FoodTruck';
+import Product from '../models/Product';
 import ImagesView from '../views/images_view';
 import ProductsView from '../views/product_view';
 
@@ -16,7 +17,7 @@ export default {
       created_at: foodTruck.created_at,
       updated_at: foodTruck.updated_at,
       images: ImagesView.renderMany(foodTruck.images),
-      products: foodTruck.products
+      products: ProductsView.renderMany(foodTruck.products)
     }
   },
 

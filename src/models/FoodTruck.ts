@@ -29,10 +29,10 @@ export default class FoodTruck {
   open_on_weekends: boolean;
 
   @OneToMany(() => Product, product => product.foodtruck_id, {cascade: ['insert', 'update']})
-  @JoinColumn({ name: 'product_id'})
+  @JoinColumn({ name: 'foodtruck_id'})
   products: Product[];
 
-  @OneToMany(() => Image, image => image.foodtruck, {cascade: ['insert', 'update']})
+  @OneToMany(() => Image, image => image.foodtruck_id, {cascade: ['insert', 'update']})
   @JoinColumn({ name: 'foodtruck_id'})
   images: Image[];
 
